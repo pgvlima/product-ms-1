@@ -4,8 +4,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
+
 import br.com.luizr.santos.productms.model.Products;
-import br.com.luizr.santos.productms.repository.ProductsRepository;
 
 public class ProductsForm {
 	
@@ -42,18 +42,10 @@ public class ProductsForm {
 	public Double getPrice() {
 		return price;
 	}
-
+	
 	// Converte o ProductsForm em Products
-	public Products conversor() {
-		return new Products(name, description, price);
+	public Products conversor(ProductsForm productsForm) {
+		return new Products(productsForm.getName(), productsForm.getDescription(), productsForm.getPrice());
 	}
 
-	// Faz a atualização do produto
-	public Products update(Long id, ProductsRepository productsRepository) {
-		Products products = productsRepository.getById(id);
-		products.setName(this.name);
-		products.setDescription(this.description);
-		products.setPrice(this.price);
-		return products;
-	}
 }

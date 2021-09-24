@@ -1,6 +1,7 @@
 package br.com.luizr.santos.productms.controller.dto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import br.com.luizr.santos.productms.model.Products;
 
@@ -34,7 +35,12 @@ public class ProductsDto {
 		return price;
 	}
 
-	public static List<ProductsDto> conversor(List<Products> products) {
+	public static List<ProductsDto> conversorDtoList(List<Products> products) {
 		return products.stream().map(ProductsDto::new).collect(Collectors.toList());
 	}
+	
+	public static Optional<ProductsDto> conversorDto(Products products) {
+		return Optional.ofNullable(new ProductsDto(products));
+	}
+
 }
